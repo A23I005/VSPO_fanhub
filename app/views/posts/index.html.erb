@@ -1,0 +1,17 @@
+<h1>ようこそVSPO!ファンハブへ！</h1>
+<p>ログインして投稿を楽しもう！</p>
+
+<% if user_signed_in? %>
+  <%= link_to "新規投稿", new_post_path %>
+
+  <h2>投稿一覧</h2>
+  <% @posts.each do |post| %>
+    <div style="border: 1px solid #ccc; padding: 10px; margin-bottom: 10px;">
+      <h3><%= post.title %></h3>
+      <p><%= post.body %></p>
+      <p>投稿者: <%= post.user.email if post.user %></p>
+    </div>
+  <% end %>
+<% else %>
+  <p>ログインすると投稿一覧が表示されます。</p>
+<% end %>
