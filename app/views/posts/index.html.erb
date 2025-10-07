@@ -7,8 +7,13 @@
   <h2>投稿一覧</h2>
   <% @posts.each do |post| %>
     <div style="border: 1px solid #ccc; padding: 10px; margin-bottom: 10px;">
-      <h3><%= post.title %></h3>
-      <p><%= post.body %></p>
+      <h2>
+        <%= link_to post.title, post_path(post), class: "text-xl font-bold text-blue-700 hover:underline" %>
+      </h2>
+
+      <p>
+        <%= link_to truncate(post.body, length: 100), post_path(post), class: "text-gray-700 hover:underline" %>
+      </p>
       <p>投稿者: <%= post.user.email if post.user %></p>
     </div>
   <% end %>

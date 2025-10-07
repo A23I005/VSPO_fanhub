@@ -1,0 +1,21 @@
+<!-- app/views/posts/show.html.erb -->
+<div class="border p-4 rounded shadow">
+  <h1 class="text-xl font-bold mb-2"><%= @post.title %></h1>
+  <p class="mb-4"><%= @post.body %></p>
+
+  <% if @post.likes.exists?(user: current_user) %>
+    <%= button_to '💔 いいね解除', post_like_path(@post),
+        method: :delete,
+        title: "この投稿のいいねを解除します",
+        class: "bg-red-500 text-white text-xl px-4 py-2 rounded-full hover:bg-red-600" %>
+  <% else %>
+    <%= button_to '❤️ いいね', post_like_path(@post),
+        method: :post,
+        title: "この投稿にいいねします",
+        class: "bg-pink-500 text-white text-xl px-4 py-2 rounded-full hover:bg-pink-600" %>
+  <% end %>
+
+  <p class="mt-2 text-sm text-gray-600">
+    <%= @post.likes.count %> 件のいいね
+  </p>
+</div>
