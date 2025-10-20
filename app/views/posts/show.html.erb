@@ -38,5 +38,11 @@
   <div class="mt-4 border-t pt-2">
     <p class="text-sm text-gray-700"><%= comment.body %></p>
     <p class="text-xs text-gray-500">投稿者: <%= comment.user.email %></p>
+    <% if comment.user == current_user %>
+      <%= button_to '🗑️ 削除', post_comment_path(@post, comment),
+          method: :delete,
+          data: { confirm: '本当に削除しますか？' },
+          class: "text-red-500 text-sm mt-1" %>
+    <% end %>
   </div>
 <% end %>

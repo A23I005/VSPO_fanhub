@@ -11,6 +11,16 @@ class CommentsController < ApplicationController
       redirect_to post_path(@post), alert: 'コメントの投稿に失敗しました'
     end
   end
+  def destroy
+    @post = Post.find(params[:post_id])
+    @comment = @post.comments.find(params[:id])
+    if @comment.user == current_user
+        @comment.destroy
+        redirect_to post_path(@post), notice: 'コメントを削除しました'
+    else
+        redirect_to post_path(@post), alert: '自分のコメントのみ削除できます'
+    end
+  end
 
   private
 
