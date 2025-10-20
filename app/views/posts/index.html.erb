@@ -15,7 +15,8 @@
         <%= link_to truncate(post.body, length: 100), post_path(post), class: "text-gray-700 hover:underline" %>
       </p>
       <p>投稿者: <%= post.user.email if post.user %></p>
-    </div>
+      <p><%= post.comments.count %> 件のコメント</p>
+      </div>
   <% end %>
 <% else %>
   <p>ログインすると投稿一覧が表示されます。</p>
